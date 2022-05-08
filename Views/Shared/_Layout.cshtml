@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @{
+        if (Session["Role"] == null)
+        {
+            Html.RenderPartial("_VisitorNav");
+        }
+        else
+        {
+            string role = Session["Role"].ToString();
+            switch (role)
+            {
+                case "Tenant":
+                    Html.RenderPartial("_TenantNav");
+                    break;
+                case "Manager":
+                    Html.RenderPartial("_MgmtNav");
+                    break;
+                case "Owner":
+                    Html.RenderPartial("_MgmtNav");
+                    break;
+                default:
+                    Html.RenderPartial("_VisitorNav");
+                    break;
+            }
+        }
+    }
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+@{
+    Html.RenderPartial("_Footer");
+}
+</html>

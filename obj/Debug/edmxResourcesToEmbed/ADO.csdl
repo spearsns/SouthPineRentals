@@ -1,0 +1,786 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LandlordV3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AddressData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="State" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ZIP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="EntryTS" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Business_Address" Relationship="Self.FK_Business_Address_AddressData" FromRole="AddressData" ToRole="Business_Address" />
+    <NavigationProperty Name="Personal_Address" Relationship="Self.FK_Personal_Address_AddressData" FromRole="AddressData" ToRole="Personal_Address" />
+    <NavigationProperty Name="Property_Address" Relationship="Self.FK_Property_Address_AddressData" FromRole="AddressData" ToRole="Property_Address" />
+  </EntityType>
+  <EntityType Name="AppAssocData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="ReferenceID" Type="Guid" Nullable="false" />
+    <Property Name="PersonalID" Type="Guid" Nullable="false" />
+    <Property Name="RoleID" Type="Guid" Nullable="false" />
+    <Property Name="Relationship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EntryTS" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="AppAssocRole" Relationship="Self.FK_AppAssocData_AppAssocRoles" FromRole="AppAssocData" ToRole="AppAssocRoles" />
+  </EntityType>
+  <EntityType Name="AppAssocRole">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AppAssocDatas" Relationship="Self.FK_AppAssocData_AppAssocRoles" FromRole="AppAssocRoles" ToRole="AppAssocData" />
+  </EntityType>
+  <EntityType Name="ApplianceData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="PropertyID" Type="Guid" Nullable="false" />
+    <Property Name="TypeID" Type="Guid" Nullable="false" />
+    <Property Name="Electric" Type="Boolean" Nullable="false" />
+    <Property Name="Gas" Type="Boolean" Nullable="false" />
+    <Property Name="Fuel" Type="Boolean" Nullable="false" />
+    <Property Name="Manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Serial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ModelLoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BusinessID" Type="Guid" />
+    <Property Name="RecieptLoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InstallDate" Type="DateTime" Precision="0" />
+    <Property Name="InstallationInvoiceLoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WarrantyEndDate" Type="DateTime" Precision="0" />
+    <Property Name="WarrantyLoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EntryTS" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="BusinessData" Relationship="Self.FK_ApplianceData_ApplianceData" FromRole="ApplianceData" ToRole="BusinessData" />
+    <NavigationProperty Name="ApplianceType" Relationship="Self.FK_ApplianceData_ApplianceType" FromRole="ApplianceData" ToRole="ApplianceType" />
+    <NavigationProperty Name="PropertyData" Relationship="Self.FK_ApplianceData_PropertyData" FromRole="ApplianceData" ToRole="PropertyData" />
+  </EntityType>
+  <EntityType Name="ApplianceType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ApplianceDatas" Relationship="Self.FK_ApplianceData_ApplianceType" FromRole="ApplianceType" ToRole="ApplianceData" />
+  </EntityType>
+  <EntityType Name="ApplicationData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="PersonalID" Type="Guid" Nullable="false" />
+    <Property Name="FileLoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EntryTS" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Approval" Type="Boolean" />
+    <Property Name="DecisionTS" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="PersonalData" Relationship="Self.FK_ApplicationData_PersonalData" FromRole="ApplicationData" ToRole="PersonalData" />
+    <NavigationProperty Name="TenantDatas" Relationship="Self.FK_TenantData_ApplicationData" FromRole="ApplicationData" ToRole="TenantData" />
+    <Property Name="PropertyAddressID" Type="Guid" />
+    <NavigationProperty Name="Property_Address" Relationship="LandlordV3Model.FK_ApplicationData_Property_Address" FromRole="ApplicationData" ToRole="Property_Address" />
+    <Property Name="FirstBankStatementLoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SecondBankStatementLoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ThirdBankStatementLoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FirstCreditStatementLoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SecondCreditStatementLoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ThirdCreditStatementLoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Business_Address">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="AddressID" Type="Guid" Nullable="false" />
+    <Property Name="BusinessID" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="AddressData" Relationship="Self.FK_Business_Address_AddressData" FromRole="Business_Address" ToRole="AddressData" />
+    <NavigationProperty Name="BusinessData" Relationship="Self.FK_Business_Address_BusinessData" FromRole="Business_Address" ToRole="BusinessData" />
+  </EntityType>
+  <EntityType Name="BusinessAssocData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="BusinessID" Type="Guid" Nullable="false" />
+    <Property Name="PersonalID" Type="Guid" Nullable="false" />
+    <Property Name="EntryTS" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="BusinessData" Relationship="Self.FK_BusinessAssocData_BusinessData" FromRole="BusinessAssocData" ToRole="BusinessData" />
+    <NavigationProperty Name="PersonalData" Relationship="Self.FK_BusinessAssocData_PersonalData" FromRole="BusinessAssocData" ToRole="PersonalData" />
+  </EntityType>
+  <EntityType Name="BusinessData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Website" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EntryTS" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="ApplianceDatas" Relationship="Self.FK_ApplianceData_ApplianceData" FromRole="BusinessData" ToRole="ApplianceData" />
+    <NavigationProperty Name="Business_Address" Relationship="Self.FK_Business_Address_BusinessData" FromRole="BusinessData" ToRole="Business_Address" />
+    <NavigationProperty Name="BusinessAssocDatas" Relationship="Self.FK_BusinessAssocData_BusinessData" FromRole="BusinessData" ToRole="BusinessAssocData" />
+  </EntityType>
+  <EntityType Name="IncludedData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="PropertyID" Type="Guid" Nullable="false" />
+    <Property Name="Electricity" Type="Boolean" Nullable="false" />
+    <Property Name="Gas" Type="Boolean" Nullable="false" />
+    <Property Name="Water" Type="Boolean" Nullable="false" />
+    <Property Name="Sewer" Type="Boolean" Nullable="false" />
+    <Property Name="Waste" Type="Boolean" Nullable="false" />
+    <Property Name="EntryTS" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="PropertyData" Relationship="Self.FK_IncludedData_PropertyData" FromRole="IncludedData" ToRole="PropertyData" />
+  </EntityType>
+  <EntityType Name="LeaseData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="PropertyID" Type="Guid" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="FileLoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EntryTS" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="PropertyData" Relationship="Self.FK_LeaseData_PropertyData" FromRole="LeaseData" ToRole="PropertyData" />
+    <NavigationProperty Name="TenantDatas" Relationship="Self.FK_TenantData_LeaseData" FromRole="LeaseData" ToRole="TenantData" />
+  </EntityType>
+  <EntityType Name="LoginData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ValidEmail" Type="Boolean" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleID" Type="Guid" Nullable="false" />
+    <Property Name="EntryTS" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="LastLogin" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="LoginRole" Relationship="Self.FK_LoginData_LoginRoles" FromRole="LoginData" ToRole="LoginRoles" />
+  </EntityType>
+  <EntityType Name="LoginRole">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="LoginDatas" Relationship="Self.FK_LoginData_LoginRoles" FromRole="LoginRoles" ToRole="LoginData" />
+  </EntityType>
+  <EntityType Name="NeighborhoodData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Association" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PropertyDatas" Relationship="Self.FK_PropertyData_NeighborhoodData" FromRole="NeighborhoodData" ToRole="PropertyData" />
+  </EntityType>
+  <EntityType Name="Personal_Address">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="AddressID" Type="Guid" Nullable="false" />
+    <Property Name="PersonalID" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="AddressData" Relationship="Self.FK_Personal_Address_AddressData" FromRole="Personal_Address" ToRole="AddressData" />
+    <NavigationProperty Name="PersonalData" Relationship="Self.FK_Personal_Address_PersonalData" FromRole="Personal_Address" ToRole="PersonalData" />
+  </EntityType>
+  <EntityType Name="PersonalData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Suffix" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="Sex" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EntryTS" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="ApplicationDatas" Relationship="Self.FK_ApplicationData_PersonalData" FromRole="PersonalData" ToRole="ApplicationData" />
+    <NavigationProperty Name="BusinessAssocDatas" Relationship="Self.FK_BusinessAssocData_PersonalData" FromRole="PersonalData" ToRole="BusinessAssocData" />
+    <NavigationProperty Name="Personal_Address" Relationship="Self.FK_Personal_Address_PersonalData" FromRole="PersonalData" ToRole="Personal_Address" />
+    <NavigationProperty Name="PetDatas" Relationship="Self.FK_PetData_PersonalData" FromRole="PersonalData" ToRole="PetData" />
+    <NavigationProperty Name="VehicleDatas" Relationship="Self.FK_VehicleData_PersonalData" FromRole="PersonalData" ToRole="VehicleData" />
+  </EntityType>
+  <EntityType Name="PetData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="ReferenceID" Type="Guid" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Breed" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Weight" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PhotoLoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EntryTS" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="PersonalData" Relationship="Self.FK_PetData_PersonalData" FromRole="PetData" ToRole="PersonalData" />
+  </EntityType>
+  <EntityType Name="Property_Address">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="AddressID" Type="Guid" Nullable="false" />
+    <Property Name="PropertyID" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="AddressData" Relationship="Self.FK_Property_Address_AddressData" FromRole="Property_Address" ToRole="AddressData" />
+    <NavigationProperty Name="PropertyData" Relationship="Self.FK_Property_Address_PropertyData" FromRole="Property_Address" ToRole="PropertyData" />
+    <NavigationProperty Name="Tenant_Address" Relationship="Self.FK_Tenant_Address_Property_Address" FromRole="Property_Address" ToRole="Tenant_Address" />
+    <NavigationProperty Name="ApplicationDatas" Relationship="LandlordV3Model.FK_ApplicationData_Property_Address" FromRole="Property_Address" ToRole="ApplicationData" />
+  </EntityType>
+  <EntityType Name="PropertyData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Rent" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Bedrooms" Type="Byte" Nullable="false" />
+    <Property Name="Bathrooms" Type="Byte" Nullable="false" />
+    <Property Name="SquareFeet" Type="Int32" />
+    <Property Name="Parking" Type="Byte" />
+    <Property Name="CentralAC" Type="Boolean" />
+    <Property Name="Laundry" Type="Boolean" />
+    <Property Name="Dishwasher" Type="Boolean" />
+    <Property Name="GarbageDisposal" Type="Boolean" />
+    <Property Name="Fireplace" Type="Boolean" />
+    <Property Name="Satellite" Type="Boolean" />
+    <Property Name="StorageShed" Type="Boolean" />
+    <Property Name="AllowCats" Type="Boolean" />
+    <Property Name="AllowDogs" Type="Boolean" />
+    <Property Name="NeighborhoodID" Type="Guid" />
+    <Property Name="HighID" Type="Guid" />
+    <Property Name="MiddleID" Type="Guid" />
+    <Property Name="ElementaryID" Type="Guid" />
+    <Property Name="EntryTS" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Vacant" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ApplianceDatas" Relationship="Self.FK_ApplianceData_PropertyData" FromRole="PropertyData" ToRole="ApplianceData" />
+    <NavigationProperty Name="IncludedDatas" Relationship="Self.FK_IncludedData_PropertyData" FromRole="PropertyData" ToRole="IncludedData" />
+    <NavigationProperty Name="LeaseDatas" Relationship="Self.FK_LeaseData_PropertyData" FromRole="PropertyData" ToRole="LeaseData" />
+    <NavigationProperty Name="NeighborhoodData" Relationship="Self.FK_PropertyData_NeighborhoodData" FromRole="PropertyData" ToRole="NeighborhoodData" />
+    <NavigationProperty Name="Property_Address" Relationship="Self.FK_Property_Address_PropertyData" FromRole="PropertyData" ToRole="Property_Address" />
+    <NavigationProperty Name="SchoolData" Relationship="Self.FK_PropertyData_SchoolData" FromRole="PropertyData" ToRole="SchoolData" />
+    <NavigationProperty Name="SchoolData1" Relationship="Self.FK_PropertyData_SchoolData_Elementary" FromRole="PropertyData" ToRole="SchoolData" />
+    <NavigationProperty Name="SchoolData2" Relationship="Self.FK_PropertyData_SchoolData_Middle" FromRole="PropertyData" ToRole="SchoolData" />
+  </EntityType>
+  <EntityType Name="SchoolData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PropertyDatas" Relationship="Self.FK_PropertyData_SchoolData" FromRole="SchoolData" ToRole="PropertyData" />
+    <NavigationProperty Name="PropertyDatas1" Relationship="Self.FK_PropertyData_SchoolData_Elementary" FromRole="SchoolData" ToRole="PropertyData" />
+    <NavigationProperty Name="PropertyDatas2" Relationship="Self.FK_PropertyData_SchoolData_Middle" FromRole="SchoolData" ToRole="PropertyData" />
+  </EntityType>
+  <EntityType Name="Tenant_Address">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="Property_AddressID" Type="Guid" Nullable="false" />
+    <Property Name="TenantID" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Property_Address" Relationship="Self.FK_Tenant_Address_Property_Address" FromRole="Tenant_Address" ToRole="Property_Address" />
+    <NavigationProperty Name="TenantData" Relationship="Self.FK_Tenant_Address_TenantData" FromRole="Tenant_Address" ToRole="TenantData" />
+  </EntityType>
+  <EntityType Name="TenantData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="LeaseID" Type="Guid" Nullable="false" />
+    <Property Name="ApplicationID" Type="Guid" Nullable="false" />
+    <Property Name="EntryTS" Type="Guid" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ApplicationData" Relationship="Self.FK_TenantData_ApplicationData" FromRole="TenantData" ToRole="ApplicationData" />
+    <NavigationProperty Name="LeaseData" Relationship="Self.FK_TenantData_LeaseData" FromRole="TenantData" ToRole="LeaseData" />
+    <NavigationProperty Name="Tenant_Address" Relationship="Self.FK_Tenant_Address_TenantData" FromRole="TenantData" ToRole="Tenant_Address" />
+  </EntityType>
+  <EntityType Name="VehicleData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="ReferenceID" Type="Guid" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Year" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Make" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LicensePlate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EntryTS" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="PersonalData" Relationship="Self.FK_VehicleData_PersonalData" FromRole="VehicleData" ToRole="PersonalData" />
+  </EntityType>
+  <Association Name="FK_Business_Address_AddressData">
+    <End Role="AddressData" Type="Self.AddressData" Multiplicity="1" />
+    <End Role="Business_Address" Type="Self.Business_Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AddressData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Business_Address">
+        <PropertyRef Name="AddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Personal_Address_AddressData">
+    <End Role="AddressData" Type="Self.AddressData" Multiplicity="1" />
+    <End Role="Personal_Address" Type="Self.Personal_Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AddressData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Personal_Address">
+        <PropertyRef Name="AddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_Address_AddressData">
+    <End Role="AddressData" Type="Self.AddressData" Multiplicity="1" />
+    <End Role="Property_Address" Type="Self.Property_Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AddressData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Property_Address">
+        <PropertyRef Name="AddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AppAssocData_AppAssocRoles">
+    <End Role="AppAssocRoles" Type="Self.AppAssocRole" Multiplicity="1" />
+    <End Role="AppAssocData" Type="Self.AppAssocData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppAssocRoles">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AppAssocData">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplianceData_ApplianceData">
+    <End Role="BusinessData" Type="Self.BusinessData" Multiplicity="0..1" />
+    <End Role="ApplianceData" Type="Self.ApplianceData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ApplianceData">
+        <PropertyRef Name="BusinessID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplianceData_ApplianceType">
+    <End Role="ApplianceType" Type="Self.ApplianceType" Multiplicity="1" />
+    <End Role="ApplianceData" Type="Self.ApplianceData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplianceType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ApplianceData">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplianceData_PropertyData">
+    <End Role="PropertyData" Type="Self.PropertyData" Multiplicity="1" />
+    <End Role="ApplianceData" Type="Self.ApplianceData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PropertyData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ApplianceData">
+        <PropertyRef Name="PropertyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplicationData_PersonalData">
+    <End Role="PersonalData" Type="Self.PersonalData" Multiplicity="1" />
+    <End Role="ApplicationData" Type="Self.ApplicationData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PersonalData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ApplicationData">
+        <PropertyRef Name="PersonalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TenantData_ApplicationData">
+    <End Role="ApplicationData" Type="Self.ApplicationData" Multiplicity="1" />
+    <End Role="TenantData" Type="Self.TenantData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TenantData">
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Business_Address_BusinessData">
+    <End Role="BusinessData" Type="Self.BusinessData" Multiplicity="1" />
+    <End Role="Business_Address" Type="Self.Business_Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Business_Address">
+        <PropertyRef Name="BusinessID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessAssocData_BusinessData">
+    <End Role="BusinessData" Type="Self.BusinessData" Multiplicity="1" />
+    <End Role="BusinessAssocData" Type="Self.BusinessAssocData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BusinessAssocData">
+        <PropertyRef Name="BusinessID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessAssocData_PersonalData">
+    <End Role="PersonalData" Type="Self.PersonalData" Multiplicity="1" />
+    <End Role="BusinessAssocData" Type="Self.BusinessAssocData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PersonalData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BusinessAssocData">
+        <PropertyRef Name="PersonalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IncludedData_PropertyData">
+    <End Role="PropertyData" Type="Self.PropertyData" Multiplicity="1" />
+    <End Role="IncludedData" Type="Self.IncludedData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PropertyData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="IncludedData">
+        <PropertyRef Name="PropertyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LeaseData_PropertyData">
+    <End Role="PropertyData" Type="Self.PropertyData" Multiplicity="1" />
+    <End Role="LeaseData" Type="Self.LeaseData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PropertyData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LeaseData">
+        <PropertyRef Name="PropertyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TenantData_LeaseData">
+    <End Role="LeaseData" Type="Self.LeaseData" Multiplicity="1" />
+    <End Role="TenantData" Type="Self.TenantData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LeaseData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TenantData">
+        <PropertyRef Name="LeaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoginData_LoginRoles">
+    <End Role="LoginRoles" Type="Self.LoginRole" Multiplicity="1" />
+    <End Role="LoginData" Type="Self.LoginData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoginRoles">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LoginData">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PropertyData_NeighborhoodData">
+    <End Role="NeighborhoodData" Type="Self.NeighborhoodData" Multiplicity="0..1" />
+    <End Role="PropertyData" Type="Self.PropertyData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NeighborhoodData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PropertyData">
+        <PropertyRef Name="NeighborhoodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Personal_Address_PersonalData">
+    <End Role="PersonalData" Type="Self.PersonalData" Multiplicity="1" />
+    <End Role="Personal_Address" Type="Self.Personal_Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PersonalData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Personal_Address">
+        <PropertyRef Name="PersonalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PetData_PersonalData">
+    <End Role="PersonalData" Type="Self.PersonalData" Multiplicity="1" />
+    <End Role="PetData" Type="Self.PetData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PersonalData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PetData">
+        <PropertyRef Name="ReferenceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleData_PersonalData">
+    <End Role="PersonalData" Type="Self.PersonalData" Multiplicity="1" />
+    <End Role="VehicleData" Type="Self.VehicleData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PersonalData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VehicleData">
+        <PropertyRef Name="ReferenceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_Address_PropertyData">
+    <End Role="PropertyData" Type="Self.PropertyData" Multiplicity="1" />
+    <End Role="Property_Address" Type="Self.Property_Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PropertyData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Property_Address">
+        <PropertyRef Name="PropertyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tenant_Address_Property_Address">
+    <End Role="Property_Address" Type="Self.Property_Address" Multiplicity="1" />
+    <End Role="Tenant_Address" Type="Self.Tenant_Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property_Address">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Tenant_Address">
+        <PropertyRef Name="Property_AddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PropertyData_SchoolData">
+    <End Role="SchoolData" Type="Self.SchoolData" Multiplicity="0..1" />
+    <End Role="PropertyData" Type="Self.PropertyData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PropertyData">
+        <PropertyRef Name="HighID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PropertyData_SchoolData_Elementary">
+    <End Role="SchoolData" Type="Self.SchoolData" Multiplicity="0..1" />
+    <End Role="PropertyData" Type="Self.PropertyData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PropertyData">
+        <PropertyRef Name="ElementaryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PropertyData_SchoolData_Middle">
+    <End Role="SchoolData" Type="Self.SchoolData" Multiplicity="0..1" />
+    <End Role="PropertyData" Type="Self.PropertyData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PropertyData">
+        <PropertyRef Name="MiddleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tenant_Address_TenantData">
+    <End Role="TenantData" Type="Self.TenantData" Multiplicity="1" />
+    <End Role="Tenant_Address" Type="Self.Tenant_Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TenantData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Tenant_Address">
+        <PropertyRef Name="TenantID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LandlordV3Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AddressDatas" EntityType="Self.AddressData" />
+    <EntitySet Name="AppAssocDatas" EntityType="Self.AppAssocData" />
+    <EntitySet Name="AppAssocRoles" EntityType="Self.AppAssocRole" />
+    <EntitySet Name="ApplianceDatas" EntityType="Self.ApplianceData" />
+    <EntitySet Name="ApplianceTypes" EntityType="Self.ApplianceType" />
+    <EntitySet Name="ApplicationDatas" EntityType="Self.ApplicationData" />
+    <EntitySet Name="Business_Address" EntityType="Self.Business_Address" />
+    <EntitySet Name="BusinessAssocDatas" EntityType="Self.BusinessAssocData" />
+    <EntitySet Name="BusinessDatas" EntityType="Self.BusinessData" />
+    <EntitySet Name="IncludedDatas" EntityType="Self.IncludedData" />
+    <EntitySet Name="LeaseDatas" EntityType="Self.LeaseData" />
+    <EntitySet Name="LoginDatas" EntityType="Self.LoginData" />
+    <EntitySet Name="LoginRoles" EntityType="Self.LoginRole" />
+    <EntitySet Name="NeighborhoodDatas" EntityType="Self.NeighborhoodData" />
+    <EntitySet Name="Personal_Address" EntityType="Self.Personal_Address" />
+    <EntitySet Name="PersonalDatas" EntityType="Self.PersonalData" />
+    <EntitySet Name="PetDatas" EntityType="Self.PetData" />
+    <EntitySet Name="Property_Address" EntityType="Self.Property_Address" />
+    <EntitySet Name="PropertyDatas" EntityType="Self.PropertyData" />
+    <EntitySet Name="SchoolDatas" EntityType="Self.SchoolData" />
+    <EntitySet Name="Tenant_Address" EntityType="Self.Tenant_Address" />
+    <EntitySet Name="TenantDatas" EntityType="Self.TenantData" />
+    <EntitySet Name="VehicleDatas" EntityType="Self.VehicleData" />
+    <AssociationSet Name="FK_Business_Address_AddressData" Association="Self.FK_Business_Address_AddressData">
+      <End Role="AddressData" EntitySet="AddressDatas" />
+      <End Role="Business_Address" EntitySet="Business_Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Personal_Address_AddressData" Association="Self.FK_Personal_Address_AddressData">
+      <End Role="AddressData" EntitySet="AddressDatas" />
+      <End Role="Personal_Address" EntitySet="Personal_Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_Address_AddressData" Association="Self.FK_Property_Address_AddressData">
+      <End Role="AddressData" EntitySet="AddressDatas" />
+      <End Role="Property_Address" EntitySet="Property_Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AppAssocData_AppAssocRoles" Association="Self.FK_AppAssocData_AppAssocRoles">
+      <End Role="AppAssocRoles" EntitySet="AppAssocRoles" />
+      <End Role="AppAssocData" EntitySet="AppAssocDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplianceData_ApplianceData" Association="Self.FK_ApplianceData_ApplianceData">
+      <End Role="BusinessData" EntitySet="BusinessDatas" />
+      <End Role="ApplianceData" EntitySet="ApplianceDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplianceData_ApplianceType" Association="Self.FK_ApplianceData_ApplianceType">
+      <End Role="ApplianceType" EntitySet="ApplianceTypes" />
+      <End Role="ApplianceData" EntitySet="ApplianceDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplianceData_PropertyData" Association="Self.FK_ApplianceData_PropertyData">
+      <End Role="PropertyData" EntitySet="PropertyDatas" />
+      <End Role="ApplianceData" EntitySet="ApplianceDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplicationData_PersonalData" Association="Self.FK_ApplicationData_PersonalData">
+      <End Role="PersonalData" EntitySet="PersonalDatas" />
+      <End Role="ApplicationData" EntitySet="ApplicationDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TenantData_ApplicationData" Association="Self.FK_TenantData_ApplicationData">
+      <End Role="ApplicationData" EntitySet="ApplicationDatas" />
+      <End Role="TenantData" EntitySet="TenantDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Business_Address_BusinessData" Association="Self.FK_Business_Address_BusinessData">
+      <End Role="BusinessData" EntitySet="BusinessDatas" />
+      <End Role="Business_Address" EntitySet="Business_Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessAssocData_BusinessData" Association="Self.FK_BusinessAssocData_BusinessData">
+      <End Role="BusinessData" EntitySet="BusinessDatas" />
+      <End Role="BusinessAssocData" EntitySet="BusinessAssocDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessAssocData_PersonalData" Association="Self.FK_BusinessAssocData_PersonalData">
+      <End Role="PersonalData" EntitySet="PersonalDatas" />
+      <End Role="BusinessAssocData" EntitySet="BusinessAssocDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IncludedData_PropertyData" Association="Self.FK_IncludedData_PropertyData">
+      <End Role="PropertyData" EntitySet="PropertyDatas" />
+      <End Role="IncludedData" EntitySet="IncludedDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LeaseData_PropertyData" Association="Self.FK_LeaseData_PropertyData">
+      <End Role="PropertyData" EntitySet="PropertyDatas" />
+      <End Role="LeaseData" EntitySet="LeaseDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TenantData_LeaseData" Association="Self.FK_TenantData_LeaseData">
+      <End Role="LeaseData" EntitySet="LeaseDatas" />
+      <End Role="TenantData" EntitySet="TenantDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoginData_LoginRoles" Association="Self.FK_LoginData_LoginRoles">
+      <End Role="LoginRoles" EntitySet="LoginRoles" />
+      <End Role="LoginData" EntitySet="LoginDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PropertyData_NeighborhoodData" Association="Self.FK_PropertyData_NeighborhoodData">
+      <End Role="NeighborhoodData" EntitySet="NeighborhoodDatas" />
+      <End Role="PropertyData" EntitySet="PropertyDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Personal_Address_PersonalData" Association="Self.FK_Personal_Address_PersonalData">
+      <End Role="PersonalData" EntitySet="PersonalDatas" />
+      <End Role="Personal_Address" EntitySet="Personal_Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PetData_PersonalData" Association="Self.FK_PetData_PersonalData">
+      <End Role="PersonalData" EntitySet="PersonalDatas" />
+      <End Role="PetData" EntitySet="PetDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleData_PersonalData" Association="Self.FK_VehicleData_PersonalData">
+      <End Role="PersonalData" EntitySet="PersonalDatas" />
+      <End Role="VehicleData" EntitySet="VehicleDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_Address_PropertyData" Association="Self.FK_Property_Address_PropertyData">
+      <End Role="PropertyData" EntitySet="PropertyDatas" />
+      <End Role="Property_Address" EntitySet="Property_Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tenant_Address_Property_Address" Association="Self.FK_Tenant_Address_Property_Address">
+      <End Role="Property_Address" EntitySet="Property_Address" />
+      <End Role="Tenant_Address" EntitySet="Tenant_Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PropertyData_SchoolData" Association="Self.FK_PropertyData_SchoolData">
+      <End Role="SchoolData" EntitySet="SchoolDatas" />
+      <End Role="PropertyData" EntitySet="PropertyDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PropertyData_SchoolData_Elementary" Association="Self.FK_PropertyData_SchoolData_Elementary">
+      <End Role="SchoolData" EntitySet="SchoolDatas" />
+      <End Role="PropertyData" EntitySet="PropertyDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PropertyData_SchoolData_Middle" Association="Self.FK_PropertyData_SchoolData_Middle">
+      <End Role="SchoolData" EntitySet="SchoolDatas" />
+      <End Role="PropertyData" EntitySet="PropertyDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tenant_Address_TenantData" Association="Self.FK_Tenant_Address_TenantData">
+      <End Role="TenantData" EntitySet="TenantDatas" />
+      <End Role="Tenant_Address" EntitySet="Tenant_Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplicationData_Property_Address" Association="LandlordV3Model.FK_ApplicationData_Property_Address">
+      <End Role="Property_Address" EntitySet="Property_Address" />
+      <End Role="ApplicationData" EntitySet="ApplicationDatas" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_ApplicationData_Property_Address">
+    <End Type="LandlordV3Model.Property_Address" Role="Property_Address" Multiplicity="0..1" />
+    <End Type="LandlordV3Model.ApplicationData" Role="ApplicationData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property_Address">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ApplicationData">
+        <PropertyRef Name="PropertyAddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

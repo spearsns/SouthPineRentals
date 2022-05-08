@@ -1,0 +1,22 @@
+﻿<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+        <img src="~/Content/Logos/SPR-75x50.png" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav font-weight-bold">
+            <a class="nav-item nav-link active" href="@Url.Action("Index", "Management")">DASHBOARD</a>
+            <a class="nav-item nav-link" href="@Url.Action("#", "Management")">NOTICES</a>
+            <a class="nav-item nav-link" href="@Url.Action("#", "Management")">REQUESTS</a>
+            <a class="nav-item nav-link" href="@Url.Action("#", "Management")">PROPERTIES</a>
+            <a class="nav-item nav-link" href="@Url.Action("#", "Management")">LEASES</a>
+            <a class="nav-item nav-link" href="@Url.Action("#", "Management")">TENANTS</a>
+            <a class="nav-item nav-link" href="@Url.Action("#", "Management")">SERVICE</a>
+            <a class="nav-item nav-link" href="@Url.Action("#", "Management")">MAINTENANCE</a>
+            <a class="nav-item nav-link" href="@Url.Action("Help", "Management")">HELP</a>
+        </div>
+    </div>
+    <a type="button" class="btn btn-danger btn-lg border border-white rounded" href="@Url.Action("Logout", "Home")">LOG OUT</a>
+</nav>

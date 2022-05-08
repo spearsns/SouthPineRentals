@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Applications";
+}
+
+<h2 class="d-flex justify-content-center">Online Applications</h2>
+
+<div class="d-flex justify-content-center">
+    <a href="~/Content/Mgmt/Applications/RentalApplication-05-21.pdf" target="_blank">DOWNLOAD APPLICATION</a>
+</div>
+
+<hr />
+
+<ol>
+    <li>Download the Application from the link above -- If you plan to apply "In Person" or at an Open House, simply fill it out and bring it with you</li>
+    <li>
+        Prepare your document(s) -- Fill out the application ENTIRELY or if choosing to upload your own financial statements omit ONLY the Bank / Credit Forms (pages 3 & 4)
+        <ul>
+            <li>
+                When you upload your application, only PDF files will be accepted and they MUST be E-Signed.  PDF editors with E-Signatures can be located here:
+                <ul>
+                    <li><a href="https://adobe.com/acrobat/online/sign-pdf.html" target="_blank">Acrobat Online</a></li>
+                    <li><a href="https://pdf-editor.pdffiller.com" target="_blank">PDFfiller.com</a></li>
+                    <li><a href="https://smallpdf.com/sign-pdf" target="_blank">smallPDF.com</a></li>
+                </ul>
+            </li>
+            <li>Should you decide NOT to release your financial account numbers within your application, only PDF and JPG files will be accepted as your Bank / Credit Statements</li>
+            <li>
+                You may strike through any sensitive details of your own files EXCEPT for the following:
+                <ul>
+                    <li>Full Name</li>
+                    <li>Issuing Institution</li>
+                    <li>Current Balance</li>
+                    <li>Date</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        Select your application type from the list below
+        <ul>
+            <li>For Joint Applicants or Cosigners, the original application must be on file and you will need the Email associated with their submission</li>
+            <li>If you plan on having any Roommate(s) apply with you, start the process by submitting a Personal Application and then share which Email you used so that they can file as a Joint Applicant afterwards</li>
+        </ul>
+    </li>
+    <li>Enter your Contact Information</li>
+    <li>Upload your completed application and select whether or not to upload your own Bank / Credit Statements</li>
+    <li>Upload your THREE most recent BANK STATEMENTS if necessary</li>
+    <li>Upload your THREE most recent CREDIT STATEMENTS if necessary</li>
+    <li>Congratulations!  We will contact you shortly!</li>
+</ol>
+
+<hr />
+
+<div class="row">
+    <div class="col-8">
+        <p>Start a new application:</p>
+    </div>
+    <div class="col-4">
+        @Html.ActionLink("PERSONAL APPLICATION", "GeneralInfo", "Applications", new { appType = "Personal" }, null)
+    </div>
+    <div class="col-8">
+        <p>Submit a joint-application with an existing candidate:</p>
+    </div>
+    <div class="col-4">
+        @Html.ActionLink("JOINT-APPLICATION", "Association", "Applications", new { appType = "Joint" }, null)
+    </div>
+    <div class="col-8">
+        <p>Cosign for an existing applicant:</p>
+    </div>
+    <div class="col-4">
+        @Html.ActionLink("COSIGNER APPLICATION", "Association", "Applications", new { appType = "Cosigner" }, null)
+    </div>
+</div>

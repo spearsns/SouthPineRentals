@@ -1,0 +1,19 @@
+﻿<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+        <img src="~/Content/Logos/SPR-75x50.png" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav font-weight-bold">
+            <a class="nav-item nav-link active" href="@Url.Action("Index", "Properties")">LOCATIONS</a>
+            <a class="nav-item nav-link" href="@Url.Action("Available", "Properties")">VACANCIES</a>
+            <a class="nav-item nav-link" href="@Url.Action("Index", "Applications")">APPLY NOW</a>
+            <a class="nav-item nav-link" href="@Url.Action("Contact", "Home")">CONTACT</a><!--GENERAL CONTACT FOR VIEWING / SUBMITTAL-->
+            <a class="nav-item nav-link" href="@Url.Action("Help", "Home")">HELP</a>
+        </div>
+    </div>
+    <a type="button" class="btn btn-success btn-lg border border-white rounded" href="@Url.Action("Login", "Home")">LOGIN</a>
+</nav>
+

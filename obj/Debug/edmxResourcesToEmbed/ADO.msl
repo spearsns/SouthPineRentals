@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LandlordV3ModelStoreContainer" CdmEntityContainer="LandlordV3Entities">
+    <EntitySetMapping Name="AddressDatas">
+      <EntityTypeMapping TypeName="LandlordV3Model.AddressData">
+        <MappingFragment StoreEntitySet="AddressData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+          <ScalarProperty Name="EntryTS" ColumnName="EntryTS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppAssocDatas">
+      <EntityTypeMapping TypeName="LandlordV3Model.AppAssocData">
+        <MappingFragment StoreEntitySet="AppAssocData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ReferenceID" ColumnName="ReferenceID" />
+          <ScalarProperty Name="PersonalID" ColumnName="PersonalID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Relationship" ColumnName="Relationship" />
+          <ScalarProperty Name="EntryTS" ColumnName="EntryTS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppAssocRoles">
+      <EntityTypeMapping TypeName="LandlordV3Model.AppAssocRole">
+        <MappingFragment StoreEntitySet="AppAssocRoles">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApplianceDatas">
+      <EntityTypeMapping TypeName="LandlordV3Model.ApplianceData">
+        <MappingFragment StoreEntitySet="ApplianceData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="Electric" ColumnName="Electric" />
+          <ScalarProperty Name="Gas" ColumnName="Gas" />
+          <ScalarProperty Name="Fuel" ColumnName="Fuel" />
+          <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Serial" ColumnName="Serial" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="ModelLoc" ColumnName="ModelLoc" />
+          <ScalarProperty Name="BusinessID" ColumnName="BusinessID" />
+          <ScalarProperty Name="RecieptLoc" ColumnName="RecieptLoc" />
+          <ScalarProperty Name="InstallDate" ColumnName="InstallDate" />
+          <ScalarProperty Name="InstallationInvoiceLoc" ColumnName="InstallationInvoiceLoc" />
+          <ScalarProperty Name="WarrantyEndDate" ColumnName="WarrantyEndDate" />
+          <ScalarProperty Name="WarrantyLoc" ColumnName="WarrantyLoc" />
+          <ScalarProperty Name="EntryTS" ColumnName="EntryTS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApplianceTypes">
+      <EntityTypeMapping TypeName="LandlordV3Model.ApplianceType">
+        <MappingFragment StoreEntitySet="ApplianceType">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApplicationDatas">
+      <EntityTypeMapping TypeName="LandlordV3Model.ApplicationData">
+        <MappingFragment StoreEntitySet="ApplicationData">
+          <ScalarProperty Name="ThirdCreditStatementLoc" ColumnName="ThirdCreditStatementLoc" />
+          <ScalarProperty Name="SecondCreditStatementLoc" ColumnName="SecondCreditStatementLoc" />
+          <ScalarProperty Name="FirstCreditStatementLoc" ColumnName="FirstCreditStatementLoc" />
+          <ScalarProperty Name="ThirdBankStatementLoc" ColumnName="ThirdBankStatementLoc" />
+          <ScalarProperty Name="SecondBankStatementLoc" ColumnName="SecondBankStatementLoc" />
+          <ScalarProperty Name="FirstBankStatementLoc" ColumnName="FirstBankStatementLoc" />
+          <ScalarProperty Name="PropertyAddressID" ColumnName="PropertyAddressID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PersonalID" ColumnName="PersonalID" />
+          <ScalarProperty Name="FileLoc" ColumnName="FileLoc" />
+          <ScalarProperty Name="EntryTS" ColumnName="EntryTS" />
+          <ScalarProperty Name="Approval" ColumnName="Approval" />
+          <ScalarProperty Name="DecisionTS" ColumnName="DecisionTS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Business_Address">
+      <EntityTypeMapping TypeName="LandlordV3Model.Business_Address">
+        <MappingFragment StoreEntitySet="Business-Address">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="BusinessID" ColumnName="BusinessID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BusinessAssocDatas">
+      <EntityTypeMapping TypeName="LandlordV3Model.BusinessAssocData">
+        <MappingFragment StoreEntitySet="BusinessAssocData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BusinessID" ColumnName="BusinessID" />
+          <ScalarProperty Name="PersonalID" ColumnName="PersonalID" />
+          <ScalarProperty Name="EntryTS" ColumnName="EntryTS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BusinessDatas">
+      <EntityTypeMapping TypeName="LandlordV3Model.BusinessData">
+        <MappingFragment StoreEntitySet="BusinessData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="EntryTS" ColumnName="EntryTS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IncludedDatas">
+      <EntityTypeMapping TypeName="LandlordV3Model.IncludedData">
+        <MappingFragment StoreEntitySet="IncludedData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+          <ScalarProperty Name="Electricity" ColumnName="Electricity" />
+          <ScalarProperty Name="Gas" ColumnName="Gas" />
+          <ScalarProperty Name="Water" ColumnName="Water" />
+          <ScalarProperty Name="Sewer" ColumnName="Sewer" />
+          <ScalarProperty Name="Waste" ColumnName="Waste" />
+          <ScalarProperty Name="EntryTS" ColumnName="EntryTS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LeaseDatas">
+      <EntityTypeMapping TypeName="LandlordV3Model.LeaseData">
+        <MappingFragment StoreEntitySet="LeaseData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="FileLoc" ColumnName="FileLoc" />
+          <ScalarProperty Name="EntryTS" ColumnName="EntryTS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoginDatas">
+      <EntityTypeMapping TypeName="LandlordV3Model.LoginData">
+        <MappingFragment StoreEntitySet="LoginData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ValidEmail" ColumnName="ValidEmail" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="EntryTS" ColumnName="EntryTS" />
+          <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoginRoles">
+      <EntityTypeMapping TypeName="LandlordV3Model.LoginRole">
+        <MappingFragment StoreEntitySet="LoginRoles">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NeighborhoodDatas">
+      <EntityTypeMapping TypeName="LandlordV3Model.NeighborhoodData">
+        <MappingFragment StoreEntitySet="NeighborhoodData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Association" ColumnName="Association" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personal_Address">
+      <EntityTypeMapping TypeName="LandlordV3Model.Personal_Address">
+        <MappingFragment StoreEntitySet="Personal-Address">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="PersonalID" ColumnName="PersonalID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonalDatas">
+      <EntityTypeMapping TypeName="LandlordV3Model.PersonalData">
+        <MappingFragment StoreEntitySet="PersonalData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Suffix" ColumnName="Suffix" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="EntryTS" ColumnName="EntryTS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PetDatas">
+      <EntityTypeMapping TypeName="LandlordV3Model.PetData">
+        <MappingFragment StoreEntitySet="PetData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ReferenceID" ColumnName="ReferenceID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Breed" ColumnName="Breed" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="PhotoLoc" ColumnName="PhotoLoc" />
+          <ScalarProperty Name="EntryTS" ColumnName="EntryTS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Property_Address">
+      <EntityTypeMapping TypeName="LandlordV3Model.Property_Address">
+        <MappingFragment StoreEntitySet="Property-Address">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PropertyDatas">
+      <EntityTypeMapping TypeName="LandlordV3Model.PropertyData">
+        <MappingFragment StoreEntitySet="PropertyData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Rent" ColumnName="Rent" />
+          <ScalarProperty Name="Bedrooms" ColumnName="Bedrooms" />
+          <ScalarProperty Name="Bathrooms" ColumnName="Bathrooms" />
+          <ScalarProperty Name="SquareFeet" ColumnName="SquareFeet" />
+          <ScalarProperty Name="Parking" ColumnName="Parking" />
+          <ScalarProperty Name="CentralAC" ColumnName="CentralAC" />
+          <ScalarProperty Name="Laundry" ColumnName="Laundry" />
+          <ScalarProperty Name="Dishwasher" ColumnName="Dishwasher" />
+          <ScalarProperty Name="GarbageDisposal" ColumnName="GarbageDisposal" />
+          <ScalarProperty Name="Fireplace" ColumnName="Fireplace" />
+          <ScalarProperty Name="Satellite" ColumnName="Satellite" />
+          <ScalarProperty Name="StorageShed" ColumnName="StorageShed" />
+          <ScalarProperty Name="AllowCats" ColumnName="AllowCats" />
+          <ScalarProperty Name="AllowDogs" ColumnName="AllowDogs" />
+          <ScalarProperty Name="NeighborhoodID" ColumnName="NeighborhoodID" />
+          <ScalarProperty Name="HighID" ColumnName="HighID" />
+          <ScalarProperty Name="MiddleID" ColumnName="MiddleID" />
+          <ScalarProperty Name="ElementaryID" ColumnName="ElementaryID" />
+          <ScalarProperty Name="EntryTS" ColumnName="EntryTS" />
+          <ScalarProperty Name="Vacant" ColumnName="Vacant" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SchoolDatas">
+      <EntityTypeMapping TypeName="LandlordV3Model.SchoolData">
+        <MappingFragment StoreEntitySet="SchoolData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tenant_Address">
+      <EntityTypeMapping TypeName="LandlordV3Model.Tenant_Address">
+        <MappingFragment StoreEntitySet="Tenant-Address">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Property_AddressID" ColumnName="Property-AddressID" />
+          <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TenantDatas">
+      <EntityTypeMapping TypeName="LandlordV3Model.TenantData">
+        <MappingFragment StoreEntitySet="TenantData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LeaseID" ColumnName="LeaseID" />
+          <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+          <ScalarProperty Name="EntryTS" ColumnName="EntryTS" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleDatas">
+      <EntityTypeMapping TypeName="LandlordV3Model.VehicleData">
+        <MappingFragment StoreEntitySet="VehicleData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ReferenceID" ColumnName="ReferenceID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Make" ColumnName="Make" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+          <ScalarProperty Name="EntryTS" ColumnName="EntryTS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
